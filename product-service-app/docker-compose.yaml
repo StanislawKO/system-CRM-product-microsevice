@@ -1,0 +1,50 @@
+services:
+  db:
+    image: 'postgres:latest'
+    restart: unless-stopped
+    container_name: product-service-db
+    environment:
+      POSTGRES_DB: product
+      POSTGRES_USER_FILE: /run/secrets/postgres_username
+      POSTGRES_PASSWORD_FILE: /run/secrets/postgres_password
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    secrets:
+      - postgres_username
+      - postgres_password
+
+  backend:
+    image: 'ghcr.io/iprody/iprody-devs-gr0000000011-product-service/product-service:latest'
+
+    container_name: product-service-app
+    ports:
+      - "8080:8080"
+      - "8443:8443"
+    depends_on:
+      - db
+
+  pgadmin:
+    image: 'dpage/pgadmin4:latest'
+    container_name: pg_admin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: pgadmin@mail.com
+      PGADMIN_DEFAULT_PASSWORD_FILE: /run/secrets/pg_password
+    ports:
+      - "8888:80"
+    depends_on:
+      - db
+    secrets:
+      - pg_password
+
+secrets:
+  postgres_username:
+    file: ./secrets/postgres_user.txt
+  postgres_password:
+    file: ./secrets/postgres_password.txt
+  pg_password:
+    file: ./secrets/pgadmin_password.txt
+
+volumes:
+  db_data:
