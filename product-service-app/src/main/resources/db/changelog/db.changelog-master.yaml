@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: stas_kozh
+      changes:
+        - tagDatabase:
+            tag: db_init
+  - include:
+      file: v-1.0/root.changelog.v-1.0.yaml
+      relativeToChangelogFile: true

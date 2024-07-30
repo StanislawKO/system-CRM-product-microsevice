@@ -1,13 +1,13 @@
-package com.masya.systemcrmproductmicrosevice;
+package com.masya.productserviceapp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SystemCrmProductMicroseviceApplication {
+public class ProductServiceAppApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(SystemCrmProductMicroseviceApplication.class, args);
+        SpringApplication.run(ProductServiceAppApplication.class, args);
     }
 
 }
