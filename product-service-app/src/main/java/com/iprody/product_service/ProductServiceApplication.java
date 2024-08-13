@@ -1,13 +1,13 @@
-package com.masya.productserviceapp;
+package com.iprody.product_service;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ProductServiceAppApplication {
+public class ProductServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ProductServiceAppApplication.class, args);
+        SpringApplication.run(ProductServiceApplication.class, args);
     }
 
 }

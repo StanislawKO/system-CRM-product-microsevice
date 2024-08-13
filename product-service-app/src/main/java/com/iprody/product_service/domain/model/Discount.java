@@ -1,6 +1,5 @@
-package com.masya.productserviceapp.domain.model;
+package com.iprody.product_service.domain.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -15,7 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.time.Instant;
 import java.util.List;
 
 @Entity
@@ -31,27 +30,32 @@ public class Discount {
     @SequenceGenerator(name = "discount_seq", sequenceName = "discount_sequence", allocationSize = 1)
     private Long id;
 
-    @Column(name = "value")
-    private short value;
+    @Column(name = "amount")
+    private Short amount;
 
-    @Column(name = "from_at", nullable = false)
-    private Timestamp fromAt;
+    @Column(name = "start_time")
+    private Instant startTime;
 
-    @Column(name = "until", nullable = false)
-    private Timestamp until;
-
-    @CreationTimestamp
-    @Column(name = "created_at", nullable = false)
-    private Timestamp createdAt;
+    @Column(name = "end_time")
+    private Instant endTime;
 
     @CreationTimestamp
-    @Column(name = "updated_at", nullable = false)
-    private Timestamp updatedAt;
+    @Column(name = "created_at")
+    private Instant createdAt;
 
-    @OneToMany(cascade = {CascadeType.DETACH, CascadeType.MERGE,
-            CascadeType.PERSIST, CascadeType.REFRESH},
-            mappedBy = "discount")
+    @CreationTimestamp
+    @Column(name = "updated_at")
+    private Instant updatedAt;
+
+    @OneToMany(mappedBy = "discount")
     private List<Product> products;
 
+    public Discount(Short amount, Instant startTime, Instant endTime, Instant createdAt, Instant updatedAt) {
+        this.amount = amount;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 }
 
