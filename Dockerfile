@@ -24,4 +24,3 @@ EXPOSE 8080
 EXPOSE 8043
 
 ENTRYPOINT ["java", "-jar", "product-service-app.jar"]
-

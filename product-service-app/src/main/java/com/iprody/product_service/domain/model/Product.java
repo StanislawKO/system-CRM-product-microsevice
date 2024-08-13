@@ -1,6 +1,5 @@
-package com.masya.productserviceapp.domain.model;
+package com.iprody.product_service.domain.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,7 +7,6 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -17,7 +15,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
-import java.sql.Timestamp;
+import java.math.BigDecimal;
+import java.time.Instant;
 
 @Entity
 @Getter
@@ -32,33 +31,41 @@ public class Product {
     @SequenceGenerator(name = "product_seq", sequenceName = "product_sequence", allocationSize = 1)
     private Long id;
 
-    @Column(name = "summary_key", nullable = false, length = 100)
-    private String summaryKey;
+    @Column(name = "summary", nullable = false, length = 100)
+    private String summary;
 
-    @Column(name = "description_key", nullable = false)
-    private String descriptionKey;
+    @Column(name = "description", nullable = false)
+    private String description;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "price_id")
-    private Price price;
+    @Column(name = "price", nullable = false)
+    private BigDecimal price;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @Column(name = "duration", nullable = false)
+    private Short duration;
+
+    @ManyToOne
     @JoinColumn(name = "discount_id")
     private Discount discount;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "duration_id")
-    private Duration duration;
 
     @Column(name = "active", nullable = false)
     private boolean active;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false)
-    private Timestamp createdAt;
+    private Instant createdAt;
 
     @CreationTimestamp
     @Column(name = "updated_at", nullable = false)
-    private Timestamp updatedAt;
+    private Instant updatedAt;
 
+    public Product(String summary, String description, BigDecimal price, Short duration, Discount discount, boolean active, Instant createdAt, Instant updatedAt) {
+        this.summary = summary;
+        this.description = description;
+        this.price = price;
+        this.duration = duration;
+        this.discount = discount;
+        this.active = active;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+    }
 }
