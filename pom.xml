@@ -13,21 +13,11 @@
     <groupId>com.masya</groupId>
     <artifactId>system-CRM-product-microsevice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>system-CRM-product-microsevice</name>
-    <description>system-CRM-product-microsevice</description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>product-service-app</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>

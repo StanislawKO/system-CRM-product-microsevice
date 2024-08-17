@@ -31,3 +31,7 @@ build/
 
 ### VS Code ###
 .vscode/
+/product-service-app/.gitignore
+/product-service-app/.mvn/wrapper/maven-wrapper.properties
+/product-service-app/mvnw.cmd
+/product-service-app/mvnw
