@@ -99,13 +99,13 @@ public class ProductControllerTest {
                 // then
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
-                .andExpect(jsonPath("$.content.length()").value(2))
-                .andExpect(jsonPath("$.content[0].summary").value("Product 1"))
-                .andExpect(jsonPath("$.content[0].description").value("Description 1"))
-                .andExpect(jsonPath("$.content[0].price").value(100.00))
-                .andExpect(jsonPath("$.content[1].summary").value("Product 2"))
-                .andExpect(jsonPath("$.content[1].description").value("Description 2"))
-                .andExpect(jsonPath("$.content[1].price").value(150.00));
+                .andExpect(jsonPath("$.length()").value(2))
+                .andExpect(jsonPath("$[0].summary").value("Product 1"))
+                .andExpect(jsonPath("$[0].description").value("Description 1"))
+                .andExpect(jsonPath("$[0].price").value(100.00))
+                .andExpect(jsonPath("$[1].summary").value("Product 2"))
+                .andExpect(jsonPath("$[1].description").value("Description 2"))
+                .andExpect(jsonPath("$[1].price").value(150.00));
     }
 
     @Test

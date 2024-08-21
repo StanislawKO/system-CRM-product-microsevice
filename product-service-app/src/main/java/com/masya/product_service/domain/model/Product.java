@@ -58,6 +58,15 @@ public class Product {
     @Column(name = "updated_at", nullable = false)
     private Instant updatedAt;
 
+    public Product(String summary, String description, BigDecimal price, Short duration, Discount discount, boolean active) {
+        this.summary = summary;
+        this.description = description;
+        this.price = price;
+        this.duration = duration;
+        this.discount = discount;
+        this.active = active;
+    }
+
     public Product(String summary, String description, BigDecimal price, Short duration, Discount discount, boolean active, Instant createdAt, Instant updatedAt) {
         this.summary = summary;
         this.description = description;
