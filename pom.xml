@@ -17,6 +17,7 @@
 
     <modules>
         <module>product-service-app</module>
+        <module>e2e</module>
     </modules>
 
     <properties>
