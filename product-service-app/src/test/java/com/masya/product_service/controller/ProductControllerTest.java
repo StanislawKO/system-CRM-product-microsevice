@@ -38,7 +38,7 @@ public class ProductControllerTest {
     @Test
     public void createProduct_returnsResponseWithStatusOk() throws Exception {
         // given
-        var requestBuilder = MockMvcRequestBuilders.post("/v1/products")
+        var requestBuilder = MockMvcRequestBuilders.post("/products/v1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -63,7 +63,7 @@ public class ProductControllerTest {
     @Test
     public void createProductWithMissingSummary_returnsResponseWithStatusBadRequest() throws Exception {
         // given
-        var requestBuilder = MockMvcRequestBuilders.post("/v1/products")
+        var requestBuilder = MockMvcRequestBuilders.post("/products/v1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -93,7 +93,7 @@ public class ProductControllerTest {
         when(productService.getAllProducts(pageable)).thenReturn(new PageImpl<>(List.of(product1, product2)));
 
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/products")
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/products/v1")
                         .param("page", "0")
                         .param("size", "25"))
                 // then
@@ -114,7 +114,7 @@ public class ProductControllerTest {
         when(productService.getProductById(1L)).thenReturn(Optional.of(new ProductDto()));
 
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/products/1"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/products/v1/1"))
                 // then
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -126,7 +126,7 @@ public class ProductControllerTest {
         when(productService.getProductById(9L)).thenReturn(Optional.empty());
 
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/products/9"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/products/v1/9"))
                 // then
                 .andExpect(status().isNotFound());
     }
@@ -134,7 +134,7 @@ public class ProductControllerTest {
     @Test
     public void updateProduct_returnsResponseWithStatusOk() throws Exception {
         // given
-        var requestBuilder = MockMvcRequestBuilders.put("/v1/products/1")
+        var requestBuilder = MockMvcRequestBuilders.put("/products/v1/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -160,7 +160,7 @@ public class ProductControllerTest {
     @Test
     public void deleteProduct_returnsResponseWithStatusOk() throws Exception {
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.delete("/v1/products/1"))
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/products/v1/1"))
                 // then
                 .andExpect(status().isOk());
 

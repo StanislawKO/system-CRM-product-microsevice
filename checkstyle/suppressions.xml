@@ -9,4 +9,6 @@
     <suppress checks="Indentation"/>
     <suppress checks="LineLength"/>
     <suppress checks="MissingJavadocMethod"/>
+    <suppress checks="MethodName"/>
+    <suppress checks="AbbreviationAsWordInName"/>
 </suppressions>

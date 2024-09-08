@@ -1,0 +1,2 @@
+-- DELETE FROM product;
+-- DELETE FROM discount;

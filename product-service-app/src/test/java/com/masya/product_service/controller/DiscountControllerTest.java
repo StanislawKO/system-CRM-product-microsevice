@@ -35,7 +35,7 @@ public class DiscountControllerTest {
     @Test
     public void createDiscountWithValidData_returnsResponseWithStatusOk() throws Exception {
         // given
-        var requestBuilder = MockMvcRequestBuilders.post("/v1/discounts")
+        var requestBuilder = MockMvcRequestBuilders.post("/discounts/v1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -60,7 +60,7 @@ public class DiscountControllerTest {
         when(discountService.getAllDiscounts()).thenReturn(List.of(discount1, discount2));
 
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/discounts"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/discounts/v1"))
                 // then
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
@@ -75,7 +75,7 @@ public class DiscountControllerTest {
         when(discountService.getDiscountById(1L)).thenReturn(Optional.of(new DiscountDto()));
 
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/discounts/1"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/discounts/v1/1"))
                 // then
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON));
@@ -87,7 +87,7 @@ public class DiscountControllerTest {
         when(discountService.getDiscountById(9L)).thenReturn(Optional.empty());
 
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.get("/v1/discounts/9"))
+        this.mockMvc.perform(MockMvcRequestBuilders.get("/discounts/v1/9"))
                 // then
                 .andExpect(status().isNotFound());
     }
@@ -95,7 +95,7 @@ public class DiscountControllerTest {
     @Test
     public void updateDiscountWithValidData_returnsResponseWithStatusOk() throws Exception {
         // given
-        var requestBuilder = MockMvcRequestBuilders.put("/v1/discounts/1")
+        var requestBuilder = MockMvcRequestBuilders.put("/discounts/v1/1")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content("""
                         {
@@ -116,7 +116,7 @@ public class DiscountControllerTest {
     @Test
     public void deleteDiscount_returnsResponseWithStatusOk() throws Exception {
         // when
-        this.mockMvc.perform(MockMvcRequestBuilders.delete("/v1/discounts/1"))
+        this.mockMvc.perform(MockMvcRequestBuilders.delete("/discounts/v1/1"))
                 // then
                 .andExpect(status().isOk());
 
